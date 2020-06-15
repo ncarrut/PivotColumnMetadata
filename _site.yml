@@ -1,9 +1,0 @@
-name: "Carruthers"
-navbar:
-  title: "Carruthers Analytics"
-  left:
-  - text: "Column Metadata"
-   href: index.html
-output:
-  html_document:
- theme: jekyll-theme-minimal
