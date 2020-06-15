@@ -503,7 +503,7 @@ table(test$income, test$incomeClass)</code></pre>
 </div>
 <div id="the-metadata-columns-are-now-available" class="section level4">
 <h4>The metadata columns are now available</h4>
-<p>We can plot the data faceted by our arbitrary grouping of religions and colored by our grouped income levels.</p>
+<p>We can plot the data summarized by our arbitrary grouping of religions and colored by our grouped income levels.</p>
 <pre class="r"><code>relig_income %&gt;%
   pivot_longer(-c(religion, religionClass), names_to = &quot;income&quot;, values_to = &quot;count&quot;) %&gt;%
   mutate(income = ordered(income, levels = columnMetadata$income)) %&gt;%

@@ -4,10 +4,9 @@ author: "Nick Carruthers"
 date: "15/06/2020"
 output: html_document
 knit: (function(input_file, encoding) {
-  out_dir <- 'docs';
   rmarkdown::render(input_file,
  encoding=encoding,
- output_file=file.path(dirname(input_file), out_dir, 'index.html'))})
+ output_file=file.path(dirname(input_file), 'index.html'))})
 ---
 
 ```{r setup, include=FALSE}
@@ -87,7 +86,7 @@ table(test$income, test$incomeClass)
 ```
 
 #### The metadata columns are now available
-We can plot the data faceted by our arbitrary grouping of religions and colored by our grouped income levels.
+We can plot the data summarized by our arbitrary grouping of religions and colored by our grouped income levels.
 
 ```{r fig.width = 8, fig.height = 8}
 relig_income %>%
