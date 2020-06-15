@@ -86,13 +86,14 @@ table(test$income, test$incomeClass)
 ```
 
 #### The metadata columns are now available
-We can plot the data summarized by our arbitrary grouping of religions and colored by our grouped income levels.
+We can plot the data summarized by our arbitrary grouping of religions and colored by our grouped income levels.  Order the income classes to make a sensible presentation
 
 ```{r fig.width = 8, fig.height = 8}
 relig_income %>%
   pivot_longer(-c(religion, religionClass), names_to = "income", values_to = "count") %>%
   mutate(income = ordered(income, levels = columnMetadata$income)) %>%
   mutate(incomeClass = columnMetadata$incomeGroup[income]) %>%
+  mutate(incomeClass = ordered(incomeClass, levels = c("low", "medium", "high", "Don't know/refused"))) %>%
   group_by(religionClass, income, incomeClass) %>%
   summarize(meanCount = mean(count), .groups =  "drop_last") %>%
   ggplot(aes(x = income, y = meanCount, fill = incomeClass)) +
