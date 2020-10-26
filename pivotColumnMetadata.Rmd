@@ -70,7 +70,6 @@ All metadata columns will be added automatically with this step.
 relig_income %>%
   pivot_longer(-c(religion, religionClass), names_to = "income", values_to = "count") %>%
   inner_join(columnMetadata, by = "income")
-
 ```
 
 #### Step 3 (optional):  Convert character data to ordered factors to control plotting order
@@ -83,15 +82,16 @@ relig_income %>%
 ```
 
 
-Finally look at the mapping to ensure it worked.  Unfortunately table doesn't play well with the `%>%` operator so this step is a bit inelegant.  
+Finally look at the mapping to ensure it worked.  
 
 ```{r}
-test <- relig_income %>%
+relig_income %>%
   pivot_longer(-c(religion, religionClass), names_to = "income", values_to = "count") %>%
   inner_join(columnMetadata, by = "income") %>%
-  mutate(income = ordered(income, levels = columnMetadata$income))
+  mutate(income = ordered(income, levels = columnMetadata$income)) %>%
+  select(income, incomeGroup) %>%
+  table()
 
-table(test$income, test$incomeGroup)
 ```
 
 #### The metadata columns are now available
@@ -112,3 +112,4 @@ relig_income %>%
 
 ```
 
+Code is available on [github](https://github.com/ncarrut/PivotColumnMetadata)
